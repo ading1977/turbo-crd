@@ -1,0 +1,20 @@
+# permissions for end users to view slohorizontalscales.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: slohorizontalscale-viewer-role
+rules:
+- apiGroups:
+  - policy.turbonomic.io
+  resources:
+  - slohorizontalscales
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - policy.turbonomic.io
+  resources:
+  - slohorizontalscales/status
+  verbs:
+  - get

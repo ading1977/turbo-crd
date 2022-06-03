@@ -1,0 +1,15 @@
+apiVersion: policy.turbonomic.io/v1alpha1
+kind: SLOHorizontalScale
+metadata:
+  name: slo-horizontal-scale-sample
+spec:
+  minReplicas: 1
+  maxReplicas: 10
+  objectives:
+    - name: ResponseTime
+      value: 300
+    - name: Transaction
+      value: 20
+  behavior:
+    scaleUp: Automatic
+    scaleDown: Disabled

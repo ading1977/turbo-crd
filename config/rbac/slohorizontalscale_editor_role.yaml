@@ -1,0 +1,24 @@
+# permissions for end users to edit slohorizontalscales.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: slohorizontalscale-editor-role
+rules:
+- apiGroups:
+  - policy.turbonomic.io
+  resources:
+  - slohorizontalscales
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - policy.turbonomic.io
+  resources:
+  - slohorizontalscales/status
+  verbs:
+  - get

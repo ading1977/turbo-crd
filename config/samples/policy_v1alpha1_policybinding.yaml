@@ -1,0 +1,15 @@
+apiVersion: policy.turbonomic.io/v1alpha1
+kind: PolicyBinding
+metadata:
+  name: policy-binding-sample
+spec:
+  policyRef:
+    kind: SLOHorizontalScale
+    name: slo-horizontal-scale-sample
+  targets:
+    - apiVersion: apps/v1
+      kind: Service
+      name: twitter-cass-api
+    - apiVersion: apps/v1
+      kind: Service
+      name: twitter-cass-(tweet|user)
