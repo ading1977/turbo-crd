@@ -16,24 +16,17 @@ limitations under the License.
 
 package v1alpha1
 
-import (
-	"k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
-)
-
-type PolicySettingName string
+import v1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
 
 const (
-	ResponseTime PolicySettingName = "ResponseTime"
-	Transaction  PolicySettingName = "Transaction"
+	ResponseTime = "ResponseTime"
+	Transaction  = "Transaction"
 )
-
-type PolicySettingValue *v1.JSON
 
 type PolicySetting struct {
 	// The name of the policy setting
-	// +kubebuilder:validation:Enum=ResponseTime;Transaction
-	Name PolicySettingName `json:"name"`
+	Name string `json:"name"`
 
 	// The value of the policy setting
-	Value PolicySettingValue `json:"value"`
+	Value v1.JSON `json:"value"`
 }

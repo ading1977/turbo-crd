@@ -84,9 +84,6 @@ spec:
                   properties:
                     name:
                       description: The name of the policy setting
-                      enum:
-                      - ResponseTime
-                      - Transaction
                       type: string
                     value:
                       description: The value of the policy setting
