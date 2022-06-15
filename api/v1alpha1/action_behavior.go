@@ -21,13 +21,14 @@ type ActionMode string
 const (
 	Automatic ActionMode = "Automatic"
 	Manual    ActionMode = "Manual"
+	Recommend ActionMode = "Recommend"
 	Disabled  ActionMode = "Disabled"
 )
 
 // ActionBehavior defines the action type and its corresponding mode
 type ActionBehavior struct {
 	// The Action mode of HorizontalScaleUp action
-	// +kubebuilder:validation:Enum=Automatic;Manual;Disabled
+	// +kubebuilder:validation:Enum=Automatic;Manual;Recommend;Disabled
 	// +optional
 	HorizontalScaleUp ActionMode `json:"scaleUp,omitempty"`
 
