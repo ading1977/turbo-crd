@@ -49,6 +49,7 @@ spec:
                     enum:
                     - Automatic
                     - Manual
+                    - Recommend
                     - Disabled
                     type: string
                   scaleUp:
@@ -93,6 +94,7 @@ spec:
                   - name
                   - value
                   type: object
+                minItems: 1
                 type: array
             type: object
           status:

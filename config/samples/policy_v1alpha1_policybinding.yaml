@@ -11,9 +11,7 @@ spec:
     name: slo-horizontal-scale-sample
   # The target services that the policy applies to
   targets:
-    - apiVersion: apps/v1
-      kind: Service
-      name: twitter-cass-api
-    - apiVersion: apps/v1
-      kind: Service
-      name: twitter-cass-(tweet|user)
+    - kind: Service
+      name: .*(topology-processor|group|repository|api)
+    - kind: Service
+      name: .*mediation.*

@@ -46,9 +46,9 @@ spec:
                   name:
                     description: The name of the policy referent
                     type: string
-                  namespace:
-                    description: The namespace of the policy referent
-                    type: string
+                required:
+                - kind
+                - name
                 type: object
               targets:
                 description: The target objects that the policy is applied to
@@ -63,11 +63,15 @@ spec:
                     name:
                       description: The Name of the target referent
                       type: string
-                    namespace:
-                      description: The Namespace of the target referent
-                      type: string
+                  required:
+                  - kind
+                  - name
                   type: object
+                minItems: 1
                 type: array
+            required:
+            - policyRef
+            - targets
             type: object
           status:
             description: PolicyBindingStatus defines the observed state of PolicyBinding
