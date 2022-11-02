@@ -1,0 +1,107 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.8.0
+  creationTimestamp: null
+  name: gitopsmodes.gitops.turbonomic.io.turbonomic.io
+spec:
+  group: gitops.turbonomic.io.turbonomic.io
+  names:
+    kind: GitOpsMode
+    listKind: GitOpsModeList
+    plural: gitopsmodes
+    singular: gitopsmode
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: GitOpsMode is the Schema for the gitopsmodes API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: GitOpsModeSpec defines the desired state of GitOpsMode
+            properties:
+              configuration:
+                description: Overrides the default GitOps configuration with custom
+                  configuration for the specified app(s).
+                items:
+                  properties:
+                    applications:
+                      description: Specifies the applications that the commit mode
+                        should apply to
+                      items:
+                        type: string
+                      type: array
+                    commitMode:
+                      description: 'Specifies the GitOps commit mode. Valid values
+                        are: - "direct": actions will produce commit directly within
+                        the underlying repository without creating a pull/merge request;
+                        - "pr": actions will result in a pull/merge request being
+                        creating within the underlying repository'
+                      enum:
+                      - direct
+                      - pr
+                      type: string
+                    credentials:
+                      description: Specifies the credentials for the underlying repository
+                        (CURRENTLY UNSUPPORTED)
+                      properties:
+                        email:
+                          description: Specifies the email address of the user from
+                            which commits/PRs will be created
+                          format: email
+                          type: string
+                        secretName:
+                          description: Specifies the name of the secret containing
+                            credentials for the repository
+                          type: string
+                        secretNamespace:
+                          description: Specifies the namespace in which the secret
+                            containing the credentials exists
+                          type: string
+                        username:
+                          description: Specifies the username from which commits/PRs
+                            will be created by
+                          type: string
+                      required:
+                      - email
+                      - secretName
+                      - secretNamespace
+                      - username
+                      type: object
+                  required:
+                  - applications
+                  - commitMode
+                  type: object
+                type: array
+            required:
+            - configuration
+            type: object
+          status:
+            description: GitOpsModeStatus defines the observed state of GitOpsMode
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

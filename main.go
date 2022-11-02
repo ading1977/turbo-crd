@@ -31,7 +31,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/healthz"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	policyv1alpha1 "github.com/turbonomic/turbo-crd/api/v1alpha1"
+	gitopsturbonomiciov1alpha1 "github.com/turbonomic/turbo-crd/apis/gitops.turbonomic.io/v1alpha1"
+	policyv1alpha1 "github.com/turbonomic/turbo-crd/apis/policy.turbonomic.io/v1alpha1"
 	//+kubebuilder:scaffold:imports
 )
 
@@ -44,6 +45,7 @@ func init() {
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
 
 	utilruntime.Must(policyv1alpha1.AddToScheme(scheme))
+	utilruntime.Must(gitopsturbonomiciov1alpha1.AddToScheme(scheme))
 	//+kubebuilder:scaffold:scheme
 }
 

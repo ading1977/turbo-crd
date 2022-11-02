@@ -1,0 +1,10 @@
+apiVersion: gitops.turbonomic.io.turbonomic.io/v1alpha1
+kind: GitOpsMode
+metadata:
+  name: gitopsmode-sample
+spec:
+  configuration:
+  - commitMode: pr
+    applications:
+    - app-name-1
+    - app-name-2
