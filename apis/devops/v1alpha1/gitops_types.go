@@ -23,8 +23,8 @@ import (
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
-// GitOpsModeSpec defines the desired state of GitOpsMode
-type GitOpsModeSpec struct {
+// GitOpsSpec defines the desired state of GitOps
+type GitOpsSpec struct {
 	// Overrides the default GitOps configuration with custom configuration for the specified app(s).
 	Configutaion []GitOpsConfiguration `json:"configuration"`
 }
@@ -46,11 +46,13 @@ type GitOpsConfiguration struct {
 	// Valid values are:
 	// - "direct": actions will produce commit directly within the underlying repository without creating a pull/merge request;
 	// - "pr": actions will result in a pull/merge request being creating within the underlying repository
+	// +kubebuilder:default:=pr
 	CommitMode CommitMode `json:"commitMode"`
 	// Specifies the credentials for the underlying repository (CURRENTLY UNSUPPORTED)
 	// +optional
 	Credentials GitOpsCredentials `json:"credentials,omitempty"`
 	// Specifies the applications that the commit mode should apply to
+	// +kubebuilder:validation:MinItems:=1
 	Applications []string `json:"applications"`
 }
 
@@ -66,8 +68,8 @@ type GitOpsCredentials struct {
 	Username string `json:"username"`
 }
 
-// GitOpsModeStatus defines the observed state of GitOpsMode
-type GitOpsModeStatus struct {
+// GitOpsStatus defines the observed state of GitOps
+type GitOpsStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 }
@@ -75,24 +77,24 @@ type GitOpsModeStatus struct {
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
 
-// GitOpsMode is the Schema for the gitopsmodes API
-type GitOpsMode struct {
+// GitOps is the Schema for the gitops API
+type GitOps struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   GitOpsModeSpec   `json:"spec,omitempty"`
-	Status GitOpsModeStatus `json:"status,omitempty"`
+	Spec   GitOpsSpec   `json:"spec,omitempty"`
+	Status GitOpsStatus `json:"status,omitempty"`
 }
 
 //+kubebuilder:object:root=true
 
-// GitOpsModeList contains a list of GitOpsMode
-type GitOpsModeList struct {
+// GitOpsList contains a list of GitOps
+type GitOpsList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []GitOpsMode `json:"items"`
+	Items           []GitOps `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&GitOpsMode{}, &GitOpsModeList{})
+	SchemeBuilder.Register(&GitOps{}, &GitOpsList{})
 }

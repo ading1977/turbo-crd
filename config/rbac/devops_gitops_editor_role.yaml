@@ -1,20 +1,20 @@
-# permissions for end users to edit gitopsmodes.
+# permissions for end users to edit gitops.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/name: clusterrole
-    app.kubernetes.io/instance: gitopsmode-editor-role
+    app.kubernetes.io/instance: gitops-editor-role
     app.kubernetes.io/component: rbac
     app.kubernetes.io/created-by: turbo-crd
     app.kubernetes.io/part-of: turbo-crd
     app.kubernetes.io/managed-by: kustomize
-  name: gitopsmode-editor-role
+  name: gitops-editor-role
 rules:
 - apiGroups:
-  - gitops.turbonomic.io.turbonomic.io
+  - devops.turbonomic.io
   resources:
-  - gitopsmodes
+  - gitops
   verbs:
   - create
   - delete
@@ -24,8 +24,8 @@ rules:
   - update
   - watch
 - apiGroups:
-  - gitops.turbonomic.io.turbonomic.io
+  - devops.turbonomic.io
   resources:
-  - gitopsmodes/status
+  - gitops/status
   verbs:
   - get

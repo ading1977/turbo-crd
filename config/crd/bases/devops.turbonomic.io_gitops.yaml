@@ -5,20 +5,20 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: gitopsmodes.gitops.turbonomic.io.turbonomic.io
+  name: gitops.devops.turbonomic.io
 spec:
-  group: gitops.turbonomic.io.turbonomic.io
+  group: devops.turbonomic.io
   names:
-    kind: GitOpsMode
-    listKind: GitOpsModeList
-    plural: gitopsmodes
-    singular: gitopsmode
+    kind: GitOps
+    listKind: GitOpsList
+    plural: gitops
+    singular: gitops
   scope: Namespaced
   versions:
   - name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: GitOpsMode is the Schema for the gitopsmodes API
+        description: GitOps is the Schema for the gitops API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -33,7 +33,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: GitOpsModeSpec defines the desired state of GitOpsMode
+            description: GitOpsSpec defines the desired state of GitOps
             properties:
               configuration:
                 description: Overrides the default GitOps configuration with custom
@@ -45,8 +45,10 @@ spec:
                         should apply to
                       items:
                         type: string
+                      minItems: 1
                       type: array
                     commitMode:
+                      default: pr
                       description: 'Specifies the GitOps commit mode. Valid values
                         are: - "direct": actions will produce commit directly within
                         the underlying repository without creating a pull/merge request;
@@ -92,7 +94,7 @@ spec:
             - configuration
             type: object
           status:
-            description: GitOpsModeStatus defines the observed state of GitOpsMode
+            description: GitOpsStatus defines the observed state of GitOps
             type: object
         type: object
     served: true

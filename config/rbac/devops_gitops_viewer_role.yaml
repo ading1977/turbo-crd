@@ -1,27 +1,27 @@
-# permissions for end users to view gitopsmodes.
+# permissions for end users to view gitops.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/name: clusterrole
-    app.kubernetes.io/instance: gitopsmode-viewer-role
+    app.kubernetes.io/instance: gitops-viewer-role
     app.kubernetes.io/component: rbac
     app.kubernetes.io/created-by: turbo-crd
     app.kubernetes.io/part-of: turbo-crd
     app.kubernetes.io/managed-by: kustomize
-  name: gitopsmode-viewer-role
+  name: gitops-viewer-role
 rules:
 - apiGroups:
-  - gitops.turbonomic.io.turbonomic.io
+  - devops.turbonomic.io
   resources:
-  - gitopsmodes
+  - gitops
   verbs:
   - get
   - list
   - watch
 - apiGroups:
-  - gitops.turbonomic.io.turbonomic.io
+  - devops.turbonomic.io
   resources:
-  - gitopsmodes/status
+  - gitops/status
   verbs:
   - get
