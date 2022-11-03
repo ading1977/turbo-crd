@@ -32,7 +32,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
 	devopsv1alpha1 "github.com/turbonomic/turbo-crd/apis/devops/v1alpha1"
-	policyv1alpha1 "github.com/turbonomic/turbo-crd/apis/policy.turbonomic.io/v1alpha1"
+	policyv1alpha1 "github.com/turbonomic/turbo-crd/apis/policy/v1alpha1"
 	//+kubebuilder:scaffold:imports
 )
 
