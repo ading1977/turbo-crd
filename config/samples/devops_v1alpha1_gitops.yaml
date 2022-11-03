@@ -4,7 +4,7 @@ metadata:
   name: gitops-sample
 spec:
   configuration:
-  - commitMode: pr
+  - commitMode: direct
     applications:
     - app-name-1
     - app-name-2

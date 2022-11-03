@@ -87,7 +87,6 @@ spec:
                       type: object
                   required:
                   - applications
-                  - commitMode
                   type: object
                 type: array
             required:

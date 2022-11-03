@@ -47,7 +47,7 @@ type GitOpsConfiguration struct {
 	// - "direct": actions will produce commit directly within the underlying repository without creating a pull/merge request;
 	// - "pr": actions will result in a pull/merge request being creating within the underlying repository
 	// +kubebuilder:default:=pr
-	CommitMode CommitMode `json:"commitMode"`
+	CommitMode CommitMode `json:"commitMode,omitempty"`
 	// Specifies the credentials for the underlying repository (CURRENTLY UNSUPPORTED)
 	// +optional
 	Credentials GitOpsCredentials `json:"credentials,omitempty"`
