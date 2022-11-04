@@ -26,7 +26,7 @@ resources:
     namespaced: true
   domain: turbonomic.io
   group: devops
-  kind: GitOps
+  kind: GitopsConfig
   path: github.com/turbonomic/turbo-crd/apis/devops/v1alpha1
   version: v1alpha1
 version: "3"

@@ -1,0 +1,11 @@
+apiVersion: devops.turbonomic.io/v1alpha1
+kind: GitopsConfig
+metadata:
+  name: gitopsconfig-sample
+spec:
+  config:
+  - commitMode: direct
+    apps:
+    - app-1
+    - app-2
+    

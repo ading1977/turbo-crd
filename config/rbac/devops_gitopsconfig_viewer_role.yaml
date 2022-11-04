@@ -1,31 +1,27 @@
-# permissions for end users to edit gitops.
+# permissions for end users to view gitopsconfigs.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/name: clusterrole
-    app.kubernetes.io/instance: gitops-editor-role
+    app.kubernetes.io/instance: gitopsconfig-viewer-role
     app.kubernetes.io/component: rbac
     app.kubernetes.io/created-by: turbo-crd
     app.kubernetes.io/part-of: turbo-crd
     app.kubernetes.io/managed-by: kustomize
-  name: gitops-editor-role
+  name: gitopsconfig-viewer-role
 rules:
 - apiGroups:
   - devops.turbonomic.io
   resources:
-  - gitops
+  - gitopsconfigs
   verbs:
-  - create
-  - delete
   - get
   - list
-  - patch
-  - update
   - watch
 - apiGroups:
   - devops.turbonomic.io
   resources:
-  - gitops/status
+  - gitopsconfigs/status
   verbs:
   - get

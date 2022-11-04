@@ -23,10 +23,10 @@ import (
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
-// GitOpsSpec defines the desired state of GitOps
-type GitOpsSpec struct {
+// GitopsConfigSpec defines the desired state of GitopsConfig
+type GitopsConfigSpec struct {
 	// Overrides the default GitOps configuration with custom configuration for the specified app(s).
-	Configutaion []GitOpsConfiguration `json:"configuration"`
+	Configutaion []Configuration `json:"config"`
 }
 
 // CommitMode describes how Turbonomic events will be processed.
@@ -41,7 +41,7 @@ const (
 	PullRequest CommitMode = "pr"
 )
 
-type GitOpsConfiguration struct {
+type Configuration struct {
 	// Specifies the GitOps commit mode.
 	// Valid values are:
 	// - "direct": actions will produce commit directly within the underlying repository without creating a pull/merge request;
@@ -50,13 +50,13 @@ type GitOpsConfiguration struct {
 	CommitMode CommitMode `json:"commitMode,omitempty"`
 	// Specifies the credentials for the underlying repository (CURRENTLY UNSUPPORTED)
 	// +optional
-	Credentials GitOpsCredentials `json:"credentials,omitempty"`
+	Credentials Credentials `json:"credentials,omitempty"`
 	// Specifies the applications that the commit mode should apply to
 	// +kubebuilder:validation:MinItems:=1
-	Applications []string `json:"applications"`
+	Applications []string `json:"apps"`
 }
 
-type GitOpsCredentials struct {
+type Credentials struct {
 	// Specifies the email address of the user from which commits/PRs will be created
 	// +kubebuilder:validation:Format=email
 	Email string `json:"email"`
@@ -68,8 +68,8 @@ type GitOpsCredentials struct {
 	Username string `json:"username"`
 }
 
-// GitOpsStatus defines the observed state of GitOps
-type GitOpsStatus struct {
+// GitopsConfigStatus defines the observed state of GitopsConfig
+type GitopsConfigStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 }
@@ -77,24 +77,24 @@ type GitOpsStatus struct {
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
 
-// GitOps is the Schema for the gitops API
-type GitOps struct {
+// GitopsConfig is the Schema for the gitopsconfigs API
+type GitopsConfig struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   GitOpsSpec   `json:"spec,omitempty"`
-	Status GitOpsStatus `json:"status,omitempty"`
+	Spec   GitopsConfigSpec   `json:"spec,omitempty"`
+	Status GitopsConfigStatus `json:"status,omitempty"`
 }
 
 //+kubebuilder:object:root=true
 
-// GitOpsList contains a list of GitOps
-type GitOpsList struct {
+// GitopsConfigList contains a list of GitopsConfig
+type GitopsConfigList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []GitOps `json:"items"`
+	Items           []GitopsConfig `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&GitOps{}, &GitOpsList{})
+	SchemeBuilder.Register(&GitopsConfig{}, &GitopsConfigList{})
 }
