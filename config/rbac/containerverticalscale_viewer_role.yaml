@@ -1,0 +1,27 @@
+# permissions for end users to view containerverticalscales.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: containerverticalscale-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: turbo-crd
+    app.kubernetes.io/part-of: turbo-crd
+    app.kubernetes.io/managed-by: kustomize
+  name: containerverticalscale-viewer-role
+rules:
+- apiGroups:
+  - policy.turbonomic.io
+  resources:
+  - containerverticalscales
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - policy.turbonomic.io
+  resources:
+  - containerverticalscales/status
+  verbs:
+  - get
