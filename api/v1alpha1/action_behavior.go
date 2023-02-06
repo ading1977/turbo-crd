@@ -36,4 +36,9 @@ type ActionBehavior struct {
 	// +kubebuilder:validation:Enum=Automatic;Manual;Recommend;Disabled
 	// +optional
 	HorizontalScaleDown *ActionMode `json:"scaleDown,omitempty"`
+
+	// The Action mode of HorizontalScaleDown action
+	// +kubebuilder:validation:Enum=Automatic;Manual;Recommend;Disabled
+	// +optional
+	VerticalResize *ActionMode `json:"resize,omitempty"`
 }
